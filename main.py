@@ -44,4 +44,24 @@ for path in filepath:
         pdf.cell(w=30, h=10, txt=str(row["price_per_unit"]), border=1)
         pdf.cell(w=30, h=10, txt=str(row["total_price"]), border=1, ln=1)
 
+    total_sum = df["total_price"].sum()
+    pdf.set_font(family="Times", size=10)
+    pdf.set_text_color(80, 80, 80)
+    pdf.cell(w=30, h=10, txt=" ", border=1)  # the input to txt should be string, no int
+    pdf.cell(w=50, h=10, txt=" ", border=1)
+    pdf.cell(w=40, h=10, txt=" ", border=1)
+    pdf.cell(w=30, h=10, txt=" ", border=1)
+    pdf.cell(w=30, h=10, txt=str(total_sum), border=1, ln=1)
+
+    #To add last line
+    pdf.set_font(family="Times", size=10, style="B")
+    pdf.set_text_color(80, 80, 80)
+    pdf.cell(w=0, h=10, txt=f"The total price is {total_sum}", ln=1)
+
+    #To add the image
+    pdf.set_font(family="Times", size=16, style="B")
+    pdf.set_text_color(80, 80, 80)
+    pdf.cell(w=30, h=10, txt="PythonHow")
+    pdf.image("pythonhow.png", w=10)
+
     pdf.output(f"PDF/{filename}.pdf")
